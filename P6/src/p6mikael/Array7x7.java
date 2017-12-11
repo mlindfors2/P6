@@ -35,6 +35,7 @@ public class Array7x7
 	// ***********************************************************
 	public void setElement(int row, int col, int value)
 	{
+//		INTE ANROPAS HELA TIDEN
 		array7[row].setElement(col, value);
 	}
 
@@ -73,7 +74,7 @@ public class Array7x7
 	{
 		for (int i=0;i<array7.length;i++)
 		{
-			array7[i].setArray(array7x7.getCol(i));
+			array7[i].setArray(array7x7.getRow(i));
 		}
 		
 	}

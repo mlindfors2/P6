@@ -5,6 +5,7 @@ import java.util.Random;
 public class Array7
 {
 	private int[] array7;
+	
 	public Array7()
 	{
 		array7 = new int[7];
@@ -16,7 +17,6 @@ public class Array7
 		{
 			this.array7[i] = array7.getElement(i);
 		}
-		
 	}
 	public Array7(int[] array)
 	{
