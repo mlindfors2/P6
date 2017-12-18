@@ -4,8 +4,22 @@ import java.util.Random;
 
 public class Array7
 {
-	private int[] array7;
+	private int[] array;
 	
+	public Array7()
+	{
+		this(new int [7]);
+	}
+	public Array7(int[] array)
+	{
+		this.array = array;
+	}
+	public Array7(Array7 array)
+	{
+		this(array.toIntArray());
+	}
+	
+	/*
 	public Array7()
 	{
 		array7 = new int[7];
@@ -22,31 +36,32 @@ public class Array7
 	{
 		this.array7 = array;
 	}
+	*/
 //	****************************************************************************
 	public void setElement(int pos, int value)
 	{
-		array7[pos] = value;
+		array[pos] = value;
 	}
 	public int getElement(int pos)
 	{
-		return array7[pos];
+		return array[pos];
 	}
 	public void setArray(Array7 array7)
 	{
-		for (int i=0;i<this.array7.length;i++)
+		for (int i=0;i<this.array.length;i++)
 		{
-			this.array7[i] = array7.getElement(i);
+			this.array[i] = array7.getElement(i);
 		}
 	}
 	public void setArray(int[] array)
 	{
-		this.array7 = array;
+		this.array = array;
 	}
 //	Tveksamt om den funkar, testa i debug
 	public Array7 getArray()
 	{
 		Array7 newArray = new Array7();
-		for(int i=0;i<array7.length;i++)
+		for(int i=0;i<array.length;i++)
 		{
 			newArray.setElement(i, this.getElement(i));
 		}
@@ -54,10 +69,10 @@ public class Array7
 	}
 	public int[] toIntArray()
 	{
-		int[] newArray = new int[array7.length];
-		for(int i=0;i<array7.length;i++)
+		int[] newArray = new int[array.length];
+		for(int i=0;i<array.length;i++)
 		{
-			newArray[i] = array7[i];
+			newArray[i] = array[i];
 		}
 		return newArray;
 	}

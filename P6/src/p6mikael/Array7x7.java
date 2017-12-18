@@ -63,9 +63,11 @@ public class Array7x7
 	public Array7 getCol(int col)
 	{
 		Array7 newArray = new Array7();
-		for (int i=0;i<array7.length;i++)
+		for (int row=0;row<array7.length;row++)
 		{
-			newArray.setElement(col,array7[i].getElement(col));
+//			int abarray = array7[row].getElement(col);
+//			newArray.setElement(row, abarray);
+			newArray.setElement(row,array7[row].getElement(col));
 		}
 		return newArray;
 	}

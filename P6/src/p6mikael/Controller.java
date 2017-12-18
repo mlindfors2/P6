@@ -13,7 +13,13 @@ public class Controller
 	public Controller()
 	{
 		array = new Array7x7();
+		ui = new Test1UI();
 	
+	}
+	public Controller(Test1UI indata)
+	{
+		array = new Array7x7();
+		this.ui = indata;
 	}
 	public Array7x7 getArray7x7()
 	{
@@ -25,7 +31,36 @@ public class Controller
 	{
 		Random rand = new Random();
 		{
-			
+			//array.get
 		}
+	}
+	public void setAllToZero()
+	{
+		for (int row=0;row<7;row++)
+		{
+			for(int col=0;col<7;col++)
+			{
+				array.setElement(row, col, 0);
+				ui.updateScreen();
+			}
+		}
+		
+	}
+	public void moveLeft()
+	{
+		for(int col=1;col<7;col++)
+		{
+			array.setCol(col-1, array.getCol(col));
+		}		
+		ui.updateScreen();
+	}
+	
+	public void moveRight()
+	{
+		for(int col=6;col>=0;col--)
+		{
+			array.setCol(col+1,  array.getCol(col));
+		}
+		ui.updateScreen();
 	}
 }
