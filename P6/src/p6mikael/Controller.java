@@ -8,7 +8,7 @@ public class Controller
 	private Array7x7 array;
 	private Array7 leftColumn;
 	private Array7 bottomRow;
-
+ 
 
 	public Controller()
 	{
@@ -63,4 +63,15 @@ public class Controller
 		}
 		ui.updateScreen();
 	}
+	
+	
+	
+	
+	
+	
+
+
 }
+
+
+

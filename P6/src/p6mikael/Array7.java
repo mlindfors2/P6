@@ -19,25 +19,7 @@ public class Array7
 		this(array.toIntArray());
 	}
 	
-	/*
-	public Array7()
-	{
-		array7 = new int[7];
-
-	}
-	public Array7(Array7 array7)
-	{
-		for(int i=0;i<this.array7.length;i++)
-		{
-			this.array7[i] = array7.getElement(i);
-		}
-	}
-	public Array7(int[] array)
-	{
-		this.array7 = array;
-	}
-	*/
-//	****************************************************************************
+	//	****************************************************************************
 	public void setElement(int pos, int value)
 	{
 		array[pos] = value;
