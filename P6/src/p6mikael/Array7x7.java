@@ -22,8 +22,11 @@ public class Array7x7
 
 	public Array7x7(int[][] array)
 	{
+		this.array7 = new Array7[7];
+		
 		for(int i=0;i<array7.length;i++)
 		{
+			array7[i] = new Array7();
 			for(int j=0;j<array7.length;j++)
 			{
 				array7[i].setElement(j, array[i][j]);

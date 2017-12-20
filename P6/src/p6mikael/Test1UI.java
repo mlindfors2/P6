@@ -13,9 +13,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 public class Test1UI extends JPanel
 {
+
+	Timer timer = new Timer(100, new TimerListener());
+	
+	
 	private Controller controller;
 	int sum = 0;
 	Random rand = new Random();
@@ -127,6 +132,8 @@ public class Test1UI extends JPanel
 		btnReadRow.addActionListener(new ButtonListener());
 		btnReadCol.addActionListener(new ButtonListener());
 		btnWriteRow.addActionListener(new ButtonListener());
+		btnWriteCol.addActionListener(new ButtonListener());
+		timer.start();
 	}
 	public void updateScreen()
 	{
@@ -145,6 +152,7 @@ public class Test1UI extends JPanel
 		{
 			if(e.getSource() == btnReadRow)
 			{
+				/*
 				for (int row=0;row<7;row++)
 				{
 					for (int col=0;col<7;col++)
@@ -152,6 +160,10 @@ public class Test1UI extends JPanel
 						lblArray[row][col].setText(Integer.toString(controller.getArray7x7().getElement(row, col)));
 					}
 				}
+				*/
+				controller.Randomize();
+				
+				
 			}
 			else if(e.getSource() == btnReadCol)
 			{
@@ -161,8 +173,25 @@ public class Test1UI extends JPanel
 			{
 				controller.setAllToZero();
 			}
+			else if(e.getSource() == btnWriteCol)
+			{
+				
+					controller.StringToScreen(jTfCol.getText());
+				
+				
+	
+			}
 		}
 		
 	}
+	private class TimerListener implements ActionListener
+	{
 
+		public void actionPerformed(ActionEvent e)
+		{
+//			updateScreen();
+			
+		}
+		
+	}
 }
