@@ -1,43 +1,58 @@
-package p6mikael;
+package moment2;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import moment2.TestUI2;
-
 
 public class Controller
 {
-	private Test1UI ui;
+	private TestUI2 ui;
 	private Array7x7 array;
 	private Array7 leftColumn;
 	private Array7 bottomRow;
 	private Chars characters;
-	private Timer timer = new Timer();
+//	private Timer timer = new Timer();
 	Array7x7 charArray = new Array7x7();
 	public int index1 = 0;
 	
 	public Controller()
 	{
 		array = new Array7x7();
-		ui = new Test1UI();
+		ui = new TestUI2();
 		characters = new Chars();
+		leftColumn = new Array7();
+		bottomRow = new Array7();
 	
 	}
-	public Controller(Test1UI test1UI)
+	public Controller(TestUI2 indata)
 	{
 		array = new Array7x7();
-		this.ui = test1UI;
+		this.ui = indata;
 		characters = new Chars();
-
+		leftColumn = new Array7();
+		bottomRow = new Array7();
 	}
 	public Array7x7 getArray7x7()
 	{
 		return array;
 	}
-	
-	
+	public Array7 getLeftColumn()
+	{
+		return leftColumn;
+	}
+	public Array7 getBottomRow()
+	{
+		return bottomRow;
+	}
+	public void setLeftColumn(Array7 leftColumn)
+	{
+		this.leftColumn = leftColumn;
+	}
+	public void setBottomRow(Array7 bottomRow)
+	{
+		this.bottomRow = bottomRow;
+	}
 	public void Randomize()
 	{
 		Random rand = new Random();
