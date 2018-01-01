@@ -9,9 +9,9 @@ public class Array7x7
 	public Array7x7()
 	{
 		this.array7 = new Array7[7];
-		for(int i=0;i<7;i++)
+		for(int row=0;row<7;row++)
 		{
-			array7[i] = new Array7();
+			array7[row] = new Array7();
 		}
 	}
 
@@ -25,22 +25,18 @@ public class Array7x7
 		this.array7 = new Array7[7];
 		
 //		for(int i=0;i<array7.length;i++)
-		for(int i=0;i<7;i++)
+		for(int row=0;row<7;row++)
 		{
-			array7[i] = new Array7();
-			for(int j=0;j<7;j++)
+			array7[row] = new Array7();
+			for(int col=0;col<7;col++)
 			{
-				array7[i].setElement(j, array[i][j]);
+				array7[row].setElement(col, array[row][col]);
 			}
 		}
 	}
-		
-	
-
-	// ***********************************************************
+// ***********************************************************
 	public void setElement(int row, int col, int value)
 	{
-//		INTE ANROPAS HELA TIDEN
 		array7[row].setElement(col, value);
 	}
 
@@ -56,15 +52,13 @@ public class Array7x7
 	{
 		return array7[row];
 	}
-//	Tveksam
 	public void setCol(int col, Array7 theCol)
 	{
-		for(int i=0;i<array7.length;i++)
+		for(int row=0;row<array7.length;row++)
 		{
-			array7[i].setElement(col, theCol.getElement(i));
+			array7[row].setElement(col, theCol.getElement(row));
 		}
 	}
-//	Tveksam
 	public Array7 getCol(int col)
 	{
 		Array7 newArray = new Array7();
@@ -74,40 +68,38 @@ public class Array7x7
 		}
 		return newArray;
 	}
-//Tveksam
 	public void setArray(Array7x7 array7x7)
 	{
-		for (int i=0;i<array7.length;i++)
+		for (int row=0;row<array7.length;row++)
 		{
-			array7[i].setArray(array7x7.getRow(i));
+			array7[row].setArray(array7x7.getRow(row));
 		}
 		
 	}
 	public void setArray(int[][] array)
 	{
-		for(int i=0;i<array7.length;i++)
+		for(int row=0;row<array7.length;row++)
 		{
-			array7[i].setArray(array[i]);
+			array7[row].setArray(array[row]);
 		}
 	}
-//	Extremt tveksam
 	public Array7x7 getArray()
 	{
 		Array7x7 newArray7 = new Array7x7();
-		for(int i=0;i<array7.length;i++)
+		for(int row=0;row<array7.length;row++)
 		{
-			newArray7.setRow(i, array7[i].getArray());
+			newArray7.setRow(row, array7[row].getArray());
 		}
 		return newArray7;
 	}
 	public int[][] toIntArray()
 	{
 		int[][] newArray7x7 = new int[7][35];
-		for(int i=0;i<array7.length;i++)
+		for(int row=0;row<array7.length;row++)
 		{
-			for(int j=0;j<35;j++)
+			for(int col=0;col<35;col++)
 			{
-				newArray7x7[i][j] = array7[i].getElement(j);
+				newArray7x7[row][col] = array7[row].getElement(col);
 			}
 			
 		}

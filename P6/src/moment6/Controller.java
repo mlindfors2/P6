@@ -145,6 +145,10 @@ public class Controller
 		ui.updateScreen();
 	}
 	
+	public void resetCounters()
+	{
+		first = true;
+	}
 	public Array7x7 transformCharArray(Array7x7 a7x7)
 	{
 		Array7x7 newArray = new Array7x7();
@@ -154,7 +158,7 @@ public class Controller
 			{
 				if (a7x7.getElement(row, col) == 0)
 				{
-					//GÖR VIT?
+					//GÖR VIT
 					newArray.setElement(row, col, Color.argb(255, 255, 255, 255));
 				}
 				else 
@@ -212,6 +216,53 @@ public class Controller
 		ui.updateScreen();
 		
 	}
+	public void moveRightText()
+	{
+		if (first) // Första gången jag är här?
+		{
+			index1 =0;
+			index2 =0;
+			index3 =0;
+			index4 =0;
+			first = false;
+			inputText = ui.getTextField();
+//			inputText = new StringBuilder(inputText).reverse().toString();
+		
+		}
+		if (inputText.length() > index3)
+		{
+			charArray = transformCharArray(characters.getChar(inputText.charAt(index3)));
+			
+		}
+		index1++;
+		if ( index1 > 6)
+		{
+			index3++;
+			index1 = 0;
+		}
+		for(int col=34;col>=0;col--)
+		{
+			if (col == 34)
+			{
+				setRightColumn(array.getCol(col));
+			}
+			else
+			{
+				array.setCol(col+1, array.getCol(col));
+			}
+		}
+		if (index2 <7)
+		{
+			array.setCol(0, charArray.getCol(index2));
+		}
+		index2++;
+		
+		if (index2 >6)
+			index2=0;
+		ui.updateScreen();
+	
+	}
+	
 	public int[][] fetchPartOfArray(Array7x7 a7x7, int index)
 	{
 		int[][] newArray = new int[7][7];
