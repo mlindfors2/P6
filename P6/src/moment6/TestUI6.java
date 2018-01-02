@@ -73,9 +73,6 @@ public class TestUI6 extends JFrame
 	public TestUI6()
 	{
 		controller = new Controller(this);
-		// cd = new
-		// ColorDisplay(1,5,Color.argb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)),Color.argb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
-		// // 1 Page (*7) höjd, 5 Page(s) (*7 bredd)
 		cd = new ColorDisplay(1, 5,
 				Color.argb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)),
 				Color.argb(255, 255, 255, 255)); // 1 Page (*7) höjd, 5 Page(s) (*7 bredd)
@@ -144,12 +141,6 @@ public class TestUI6 extends JFrame
 	public void updateScreen()
 	{
 
-		// int[][] myarray = new int[7][35];
-		// myarray = controller.getArray7x7().toIntArray();
-		// cd.setDisplay(myarray,0,5);
-
-		// cd.setDisplay(controller.getArray7x7().toIntArray(),0,1);
-
 		for (int index = 0; index < 5; index++)
 		{
 			cd.setDisplay(controller.fetchPartOfArray(controller.getArray7x7(), index), 0, index);
@@ -207,83 +198,90 @@ public class TestUI6 extends JFrame
 		}
 		return newArray;
 	}
+
 	public void enableButtons(boolean status)
 	{
 		btnLeftText.setEnabled(status);
 		btnRightText.setEnabled(status);
 		btnLeft.setEnabled(status);
-		btnRight.setEnabled(status);	
+		btnRight.setEnabled(status);
 	}
-	public void useTimerMoveLeft() 
+
+	public void useTimerMoveLeft()
 	{
 		enableButtons(false);
 		timer = new Timer();
 		timer.schedule(new moveLeft(), 40, 40);
 	}
+
 	public void useTimerMoveRight()
 	{
-		enableButtons(false);		
+		enableButtons(false);
 		timer = new Timer();
-		timer.schedule(new moveRight(),40,40);
+		timer.schedule(new moveRight(), 40, 40);
 	}
+
 	public void useTimerMoveLeftText()
 	{
 		enableButtons(false);
 		timer = new Timer();
-		timer.schedule(new moveLeftText(), 40,40);
+		timer.schedule(new moveLeftText(), 40, 40);
 	}
+
 	public void useTimerMoveRightText()
 	{
 		enableButtons(false);
 		timer = new Timer();
-		timer.schedule(new moveRightText(),40,40);
+		timer.schedule(new moveRightText(), 40, 40);
 	}
 
 	private class moveLeft extends TimerTask
 	{
 		private int counter = 0;
-		public void run() 
+
+		public void run()
 		{
-			if(counter<98) 
+			if (counter < 98)
 			{
 				counter++;
 				controller.moveLeft();
-			} 
-			else 
+			} else
 			{
 				timer.cancel(); // Can't use Timer-instance anymore
 				enableButtons(true);
 			}
 		}
 	}
+
 	private class moveRight extends TimerTask
 	{
-		private int counter=0;
+		private int counter = 0;
+
 		public void run()
 		{
-			if (counter<98)
+			if (counter < 98)
 			{
 				counter++;
 				controller.moveRight();
-			}
-			else
+			} else
 			{
 				timer.cancel();
 				enableButtons(true);
 			}
 		}
 	}
+
 	private class moveLeftText extends TimerTask
 	{
 		private int counter = 0;
+
 		public void run()
 		{
-			if (counter<(textField.getText().length()*7))
+			if (counter < (textField.getText().length() * 7))
 			{
 				counter++;
 				controller.moveLeftText();
-			}
-			else
+			} else
 			{
 				timer.cancel();
 				controller.resetCounters();
@@ -291,17 +289,18 @@ public class TestUI6 extends JFrame
 			}
 		}
 	}
+
 	private class moveRightText extends TimerTask
 	{
 		private int counter = 0;
+
 		public void run()
 		{
-			if (counter<(textField.getText().length()*7))
+			if (counter < (textField.getText().length() * 7))
 			{
 				counter++;
 				controller.moveRightText();
-			}
-			else
+			} else
 			{
 				timer.cancel();
 				controller.resetCounters();
@@ -309,6 +308,7 @@ public class TestUI6 extends JFrame
 			}
 		}
 	}
+
 	private class ButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -316,22 +316,22 @@ public class TestUI6 extends JFrame
 			if (e.getSource() == btnLeft)
 			{
 				useTimerMoveLeft();
-//				controller.moveLeft();
+				// controller.moveLeft();
 			}
 			if (e.getSource() == btnRight)
 			{
 				useTimerMoveRight();
-//				controller.moveRight();
+				// controller.moveRight();
 			}
 			if (e.getSource() == btnLeftText)
 			{
 				useTimerMoveLeftText();
 			}
-			if(e.getSource() == btnRightText)
+			if (e.getSource() == btnRightText)
 			{
 				useTimerMoveRightText();
 			}
 		}
-		
+
 	}
 }

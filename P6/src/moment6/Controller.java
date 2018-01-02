@@ -14,7 +14,6 @@ public class Controller
 	private Array7 leftColumn;
 	private Array7 rightColumn;
 	private Chars characters;
-//	private Timer timer = new Timer();
 	Array7x7 charArray = new Array7x7();
 	String inputText = "";
 	private boolean first = true;
@@ -22,7 +21,6 @@ public class Controller
 	private int index1 = 0;
 	private int index2 = 0;
 	private int index3 = 0;
-	private int index4 = 0;
 	Random rand = new Random();
 	public Controller()
 	{
@@ -176,11 +174,10 @@ public class Controller
 		
 		if (first) // Första gången jag är här?
 		{
+			first = false;
 			index1 =0;
 			index2 =0;
 			index3 =0;
-			index4 =0;
-			first = false;
 			inputText = ui.getTextField();
 		
 		}
@@ -220,14 +217,11 @@ public class Controller
 	{
 		if (first) // Första gången jag är här?
 		{
+			first = false;
 			index1 =0;
 			index2 =0;
 			index3 =0;
-			index4 =0;
-			first = false;
 			inputText = ui.getTextField();
-//			inputText = new StringBuilder(inputText).reverse().toString();
-		
 		}
 		if (inputText.length() > index3)
 		{
@@ -275,63 +269,9 @@ public class Controller
 		}
 		return newArray;
 	}
+}
 	
-	
-/*	public void StringToScreen(String text) 
-	{
-		
-		for(int index=0;index<text.length();index++)
-		{
-			char character = text.charAt(index);
-						
-			charArray = characters.getChar(character);
-			
-			
-			for (int i=0;i<7;i++)
-			{
-				try {
-					moveLeft();
-					array.setCol(6, charArray.getCol(i));
-					ui.updateScreen();
-					Thread.sleep(40);
-				} catch(InterruptedException ex) {
-				    Thread.currentThread().interrupt();
-				}	
-				
-			}
-		
-			
-		}
-	}
-	public void CharToScreen(char chr)	{
-		
-		
-		
-		
-			
-		
-	}
-	private class ToDo extends TimerTask
-	{
 
-		
-		public void run()
-		{
-				moveLeft();
-				System.out.println(index1);
-				index1++;
-		
-			
-		}
-		
-	}
-*/
-	}
-
-
-	
-	
-	
 	
 	
 
