@@ -68,10 +68,6 @@ public class Controller
 				for(int col=0;col<7;col++)
 				{
 					array.setElement(row,  col, Color.argb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));  
-							
-					
-					
-					 
 				}
 			}
 			ui.updateScreen();
@@ -145,56 +141,7 @@ public class Controller
 		ui.updateScreen();
 	}
 	
-	public void StringToScreen(String text) 
-	{
-		
-		for(int index=0;index<text.length();index++)
-		{
-			char character = text.charAt(index);
-						
-			charArray = characters.getChar(character);
-			
-			
-			for (int i=0;i<7;i++)
-			{
-				try {
-					moveLeft();
-					array.setCol(6, charArray.getCol(i));
-					ui.updateScreen();
-					Thread.sleep(40);
-				} catch(InterruptedException ex) {
-				    Thread.currentThread().interrupt();
-				}	
-				
-			}
-		
-			
-		}
-	}
-	public void CharToScreen(char chr)	{
-		
-		
-		
-		
-			
-		
-	}
-	private class ToDo extends TimerTask
-	{
-
-		
-		public void run()
-		{
-				moveLeft();
-				System.out.println(index1);
-				index1++;
-		
-			
-		}
-		
-	}
-
-	}
+}
 
 
 	

@@ -20,7 +20,7 @@ public class Chars {
 	{
 		for (int index=0;index<characters.length;index++)
 		{
-//			characters[index] = new Array7x7(UNKNOWN); //Sätter alla tecken till "unknown" vid initering
+			characters[index] = new Array7x7(UNKNOWN); //Sätter alla tecken till "unknown" vid initering
 		}
 	
 		
@@ -79,7 +79,7 @@ public class Chars {
 //		characters['å'] = new Array7x7(charå);
 //		characters['ä'] = new Array7x7(charä);
 //		characters['ö'] = new Array7x7(charö);
-
+		
 		characters['!'] = new Array7x7(EXCLAMATION);
 		
 		

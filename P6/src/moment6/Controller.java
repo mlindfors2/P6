@@ -22,6 +22,7 @@ public class Controller
 	private int index2 = 0;
 	private int index3 = 0;
 	Random rand = new Random();
+	private Array7x7[] bigassarray;
 	public Controller()
 	{
 		array = new Array7x7();
@@ -29,7 +30,12 @@ public class Controller
 		characters = new Chars();
 		leftColumn = new Array7();
 		rightColumn = new Array7();
-	
+		for (int index = 0 ; index < 5; index++)
+		{
+			bigassarray[index] = new Array7x7();
+		}
+		
+		
 	}
 	public Controller(TestUI6 indata)
 	{
@@ -38,6 +44,10 @@ public class Controller
 		characters = new Chars();
 		leftColumn = new Array7();
 		rightColumn = new Array7();
+		for (int index=0;index<5;index++)
+		{
+			bigassarray[row] = new 
+		}
 	}
 	public Array7x7 getArray7x7()
 	{

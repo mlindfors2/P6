@@ -73,8 +73,7 @@ public class TestUI6 extends JFrame
 	public TestUI6()
 	{
 		controller = new Controller(this);
-		cd = new ColorDisplay(1, 5,
-				Color.argb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)),
+		cd = new ColorDisplay(1, 5,	Color.argb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)),
 				Color.argb(255, 255, 255, 255)); // 1 Page (*7) höjd, 5 Page(s) (*7 bredd)
 
 		// cd = new ColorDisplay(1,5,rand.nextInt()+255, rand.nextInt()+255);
@@ -135,18 +134,18 @@ public class TestUI6 extends JFrame
 		btnLeftText.addActionListener(new ButtonListener());
 		btnRightText.addActionListener(new ButtonListener());
 
-		textField.setText("HejHopp och god jul");
+		textField.setText("Programmering ar kul!");
 	}
 
 	public void updateScreen()
 	{
-
+		
 		for (int index = 0; index < 5; index++)
 		{
+			
+			controller.getArray7x7()
 			cd.setDisplay(controller.fetchPartOfArray(controller.getArray7x7(), index), 0, index);
 		}
-
-		// cd.setDisplay(controller.getArray7x7().toIntArray(),0,5);
 		cd.updateDisplay();
 
 		for (int row = 0; row < jtextLeftArray.length; row++)
@@ -168,7 +167,6 @@ public class TestUI6 extends JFrame
 		{
 			jtextLeftArray[row].setText(Integer.toString(leftColumn.getElement(row)));
 		}
-
 	}
 
 	public void writeRightColumn(Array7 rightColumn)
@@ -238,7 +236,6 @@ public class TestUI6 extends JFrame
 	private class moveLeft extends TimerTask
 	{
 		private int counter = 0;
-
 		public void run()
 		{
 			if (counter < 98)
@@ -316,12 +313,10 @@ public class TestUI6 extends JFrame
 			if (e.getSource() == btnLeft)
 			{
 				useTimerMoveLeft();
-				// controller.moveLeft();
 			}
 			if (e.getSource() == btnRight)
 			{
 				useTimerMoveRight();
-				// controller.moveRight();
 			}
 			if (e.getSource() == btnLeftText)
 			{

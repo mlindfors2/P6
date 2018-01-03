@@ -23,8 +23,6 @@ public class Array7x7
 	public Array7x7(int[][] array)
 	{
 		this.array7 = new Array7[7];
-		
-//		for(int i=0;i<array7.length;i++)
 		for(int row=0;row<7;row++)
 		{
 			array7[row] = new Array7();
@@ -104,8 +102,6 @@ public class Array7x7
 			
 		}
 		return newArray7x7;
-	}
-		
-	
+	}	
 }
 

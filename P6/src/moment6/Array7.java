@@ -8,7 +8,7 @@ public class Array7
 	
 	public Array7()
 	{
-		this(new int [35]);
+		this(new int [7]);
 	}
 	public Array7(int[] array)
 	{

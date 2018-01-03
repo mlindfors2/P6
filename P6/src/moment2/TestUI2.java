@@ -111,7 +111,7 @@ public class TestUI2 extends JFrame
 		panel_2.add(lblRadNr);
 		
 		
-		tfRow.setText("4");
+		tfRow.setText("1");
 		panel_2.add(tfRow);
 		tfRow.setColumns(10);
 		
@@ -135,7 +135,7 @@ public class TestUI2 extends JFrame
 		panel_5.add(lblKolumnNr);
 		
 		
-		tfCol.setText("4");
+		tfCol.setText("1");
 		panel_5.add(tfCol);
 		tfCol.setColumns(10);
 		
@@ -221,6 +221,7 @@ public class TestUI2 extends JFrame
 		}
 		for (int col=0;col<jtextBottomArray.length;col++)
 		{
+			String cp = jtextBottomArray[col].getText();
 			jtextBottomArray[col].setText(Integer.toString(controller.getBottomRow().getElement(col)));
 		}
 		for (int row=0;row<jtextLeftArray.length;row++)
@@ -261,7 +262,7 @@ public class TestUI2 extends JFrame
 		{
 			newArray.setElement(row, Integer.parseInt(jtextLeftArray[row].getText()));
 		}
-		return null;
+		return newArray;
 	}
 	
 	private class ButtonListener implements ActionListener
@@ -300,6 +301,7 @@ public class TestUI2 extends JFrame
 			{
 				if (Integer.parseInt(tfCol.getText())>0 && Integer.parseInt(tfCol.getText())<8)
 				{
+					//getLeftColumn ej uppdaterad från start
 					controller.getArray7x7().setCol(Integer.parseInt(tfCol.getText())-1, controller.getLeftColumn());
 					updateScreen();
 				}
