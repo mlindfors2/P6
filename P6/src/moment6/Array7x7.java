@@ -92,10 +92,10 @@ public class Array7x7
 	}
 	public int[][] toIntArray()
 	{
-		int[][] newArray7x7 = new int[7][35];
+		int[][] newArray7x7 = new int[7][7];
 		for(int row=0;row<array7.length;row++)
 		{
-			for(int col=0;col<35;col++)
+			for(int col=0;col<7;col++)
 			{
 				newArray7x7[row][col] = array7[row].getElement(col);
 			}

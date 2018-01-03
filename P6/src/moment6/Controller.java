@@ -10,48 +10,48 @@ import java.util.TimerTask;
 public class Controller
 {
 	private TestUI6 ui;
-	private Array7x7 array;
+//	private Array7x7 array;
 	private Array7 leftColumn;
 	private Array7 rightColumn;
 	private Chars characters;
 	Array7x7 charArray = new Array7x7();
 	String inputText = "";
-	private boolean first = true;
+	private boolean firstTime = true;
 	
-	private int index1 = 0;
-	private int index2 = 0;
-	private int index3 = 0;
+	private int columnCounter = 0;
+	private int columnInCharacter = 0;
+	private int characterIndex = 0;
 	Random rand = new Random();
-	private Array7x7[] bigassarray;
+	private Array7x7[] array5x7x7 = new Array7x7[5];
 	public Controller()
 	{
-		array = new Array7x7();
+//		array = new Array7x7();
 		ui = new TestUI6();
 		characters = new Chars();
 		leftColumn = new Array7();
 		rightColumn = new Array7();
 		for (int index = 0 ; index < 5; index++)
 		{
-			bigassarray[index] = new Array7x7();
+			array5x7x7[index] = new Array7x7();
 		}
 		
 		
 	}
 	public Controller(TestUI6 indata)
 	{
-		array = new Array7x7();
+//		array = new Array7x7();
 		this.ui = indata;
 		characters = new Chars();
 		leftColumn = new Array7();
 		rightColumn = new Array7();
 		for (int index=0;index<5;index++)
 		{
-			bigassarray[row] = new 
+			array5x7x7[index] = new Array7x7(); 
 		}
 	}
-	public Array7x7 getArray7x7()
+	public Array7x7 getArray7x7(int index)
 	{
-		return array;
+		return array5x7x7[index];
 	}
 	
 	public Array7 getLeftColumn()
@@ -77,9 +77,13 @@ public class Controller
 		{
 			leftColumn.setElement(row, Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
 			rightColumn.setElement(row, Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
-			for(int col=0;col<35;col++)
+			for(int col=0;col<7;col++)
 			{
-				array.setElement(row,  col, Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));  
+				for (int index=0;index<array5x7x7.length;index++)
+				{
+					
+					array5x7x7[index].setElement(row,  col, Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
+				}
 			}
 		}
 		ui.updateScreen();
@@ -103,59 +107,61 @@ public class Controller
 	}
 	
 	
-	public void setAllToZero()
-	{
-		for (int row=0;row<7;row++)
-		{
-			for(int col=0;col<7;col++)
-			{
-				array.setElement(row, col, 0);
-				
-			}
-		}
-		ui.updateScreen();
-	}
 	public void moveLeft()
 	{
 		randomizeRightColumn();
-		for (int col=0;col<35;col++)
+		for (int index=0;index<array5x7x7.length;index++)
 		{
-			if (col==0)
+			for (int col=0;col<7;col++)
 			{
-				setLeftColumn(array.getCol(col));				
+				if (col==0 && index == 0 ) 
+				{
+					setLeftColumn(array5x7x7[index].getCol(col));				
+				}
+				else if (col == 0 && index>0)
+				{
+					array5x7x7[index-1].setCol(6, array5x7x7[index].getCol(col));
+				}
+				else
+				{
+					array5x7x7[index].setCol(col-1, array5x7x7[index].getCol(col));
+				}
 			}
-			else
-			{
-				array.setCol(col-1, array.getCol(col));
-			}
+		
 		}
-//		setRightColumn(ui.readRightColumn());
-		array.setCol(34, getRightColumn());
-		ui.updateScreen();
+			array5x7x7[array5x7x7.length-1].setCol(6, getRightColumn());		
+			ui.updateScreen();
+			
 	}
-	
 	public void moveRight()
 	{
 		randomizeLeftColumn();
-		for(int col=34;col>=0;col--)
+		for (int index=array5x7x7.length-1;index>=0;index--)
 		{
-			if (col==34)
+			for(int col=6;col>=0;col--)
 			{
-				setRightColumn(array.getCol(col));
-			}
-			else
-			{
-				array.setCol(col+1,array.getCol(col));
+				if (col==6 && index == array5x7x7.length-1)
+				{
+					setRightColumn(array5x7x7[index].getCol(col));
+				}
+				else if (col == 6 && index<array5x7x7.length-1)
+				{
+					array5x7x7[index+1].setCol(0, array5x7x7[index].getCol(col));
+				}
+				else
+				{
+					array5x7x7[index].setCol(col+1,array5x7x7[index].getCol(col));
+				}
 			}
 		}
-//		setLeftColumn(ui.readLeftColumn());
-		array.setCol(0, getLeftColumn());
+		array5x7x7[0].setCol(0, getLeftColumn());
 		ui.updateScreen();
+		
 	}
 	
 	public void resetCounters()
 	{
-		first = true;
+		firstTime = true;
 	}
 	public Array7x7 transformCharArray(Array7x7 a7x7)
 	{
@@ -181,104 +187,111 @@ public class Controller
 	
 	public void moveLeftText()
 	{
-		
-		if (first) // Första gången jag är här?
+		if (firstTime) // Första gången jag är här?
 		{
-			first = false;
-			index1 =0;
-			index2 =0;
-			index3 =0;
+			firstTime = false;
+			columnCounter =0;
+			columnInCharacter =0;
+			characterIndex =0;
 			inputText = ui.getTextField();
 		
 		}
-		if (inputText.length() > index3)
+		if (inputText.length() > characterIndex)
 		{
-			charArray = transformCharArray(characters.getChar(inputText.charAt(index3)));
+			charArray = transformCharArray(characters.getChar(inputText.charAt(characterIndex)));
 		}
-		index1++;
-		if ( index1 > 6)
+		columnCounter++;
+		if ( columnCounter > 6)
 		{
-			index3++;
-			index1 = 0;
+			characterIndex++;
+			columnCounter = 0;
 		}
-		for(int col=0;col<35;col++)
+		for (int index=0;index<array5x7x7.length;index++)
 		{
-			if (col == 0)
+			for(int col=0;col<7;col++)
 			{
-				setLeftColumn(array.getCol(col));
+				if (col == 0 && index == 0)
+				{
+					setLeftColumn(array5x7x7[index].getCol(col));
+				}
+				else if (col == 0 && index > 0)
+				{
+					array5x7x7[index-1].setCol(6,  array5x7x7[index].getCol(col));
+				}
+				else
+				{
+					array5x7x7[index].setCol(col-1, array5x7x7[index].getCol(col));
+				}
 			}
-			else
-			{
-				array.setCol(col-1, array.getCol(col));
-			}
+			
 		}
-		if (index2 <7)
+		if (columnInCharacter <7)
 		{
-			array.setCol(34, charArray.getCol(index2));
+			array5x7x7[array5x7x7.length-1].setCol(6, charArray.getCol(columnInCharacter));
 		}
-		index2++;
-		
-		if (index2 >6)
-			index2=0;
+		columnInCharacter++;
+		if (columnInCharacter >6)
+		{
+			columnInCharacter=0;
+		}
 		ui.updateScreen();
-		
 	}
 	public void moveRightText()
 	{
-		if (first) // Första gången jag är här?
+		
+	
+		if (firstTime) // Första gången jag är här?
 		{
-			first = false;
-			index1 =0;
-			index2 =0;
-			index3 =0;
+			firstTime = false;
+			columnInCharacter = 6;
+			columnCounter = 0;
+			characterIndex = 0;
+			
 			inputText = ui.getTextField();
 		}
-		if (inputText.length() > index3)
+		if (inputText.length() > characterIndex)
 		{
-			charArray = transformCharArray(characters.getChar(inputText.charAt(index3)));
+			charArray = transformCharArray(characters.getChar(inputText.charAt(characterIndex)));
 			
 		}
-		index1++;
-		if ( index1 > 6)
+		columnCounter++;
+		if ( columnCounter > 6)
 		{
-			index3++;
-			index1 = 0;
+			characterIndex++;
+			columnCounter = 0;
 		}
-		for(int col=34;col>=0;col--)
+		for (int index=array5x7x7.length-1;index>=0;index--)
 		{
-			if (col == 34)
+			for(int col=6;col>=0;col--)
 			{
-				setRightColumn(array.getCol(col));
-			}
-			else
-			{
-				array.setCol(col+1, array.getCol(col));
+				if (col == 6 && index == array5x7x7.length-1)
+				{
+					setRightColumn(array5x7x7[index].getCol(col));
+				}
+				else if( col == 6 && index<array5x7x7.length-1)
+				{
+					array5x7x7[index+1].setCol(0, array5x7x7[index].getCol(col));
+				}
+				else
+				{
+					array5x7x7[index].setCol(col+1, array5x7x7[index].getCol(col));
+				}
 			}
 		}
-		if (index2 <7)
+		if (columnInCharacter >=0)
 		{
-			array.setCol(0, charArray.getCol(index2));
+			array5x7x7[0].setCol(0, charArray.getCol(columnInCharacter));
 		}
-		index2++;
-		
-		if (index2 >6)
-			index2=0;
+		columnInCharacter--;
+		if (columnInCharacter <0)
+		{
+			columnInCharacter=6;
+		}
 		ui.updateScreen();
 	
 	}
 	
-	public int[][] fetchPartOfArray(Array7x7 a7x7, int index)
-	{
-		int[][] newArray = new int[7][7];
-		for (int row=0;row<7;row++)
-		{
-			for (int col=0;col<7;col++)
-			{
-				newArray[row][col] = a7x7.getElement(row, col+(index*7));
-			}
-		}
-		return newArray;
-	}
+	
 }
 	
 

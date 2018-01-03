@@ -143,8 +143,8 @@ public class TestUI6 extends JFrame
 		for (int index = 0; index < 5; index++)
 		{
 			
-			controller.getArray7x7()
-			cd.setDisplay(controller.fetchPartOfArray(controller.getArray7x7(), index), 0, index);
+//			controller.getArray7x7(index);
+			cd.setDisplay(controller.getArray7x7(index).toIntArray(), 0, index);
 		}
 		cd.updateDisplay();
 
@@ -312,10 +312,12 @@ public class TestUI6 extends JFrame
 		{
 			if (e.getSource() == btnLeft)
 			{
+//				controller.moveLeft();
 				useTimerMoveLeft();
 			}
 			if (e.getSource() == btnRight)
 			{
+//				controller.moveRight();
 				useTimerMoveRight();
 			}
 			if (e.getSource() == btnLeftText)
