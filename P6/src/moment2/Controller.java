@@ -1,8 +1,6 @@
 package moment2;
 
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class Controller
@@ -11,16 +9,12 @@ public class Controller
 	private Array7x7 array;
 	private Array7 leftColumn;
 	private Array7 bottomRow;
-	private Chars characters;
-//	private Timer timer = new Timer();
-	Array7x7 charArray = new Array7x7();
 	public int index1 = 0;
 	
 	public Controller()
 	{
 		array = new Array7x7();
 		ui = new TestUI2();
-		characters = new Chars();
 		leftColumn = new Array7();
 		bottomRow = new Array7();
 	
@@ -29,7 +23,6 @@ public class Controller
 	{
 		array = new Array7x7();
 		this.ui = indata;
-		characters = new Chars();
 		leftColumn = new Array7();
 		bottomRow = new Array7();
 	}
@@ -80,26 +73,10 @@ public class Controller
 		}
 		ui.updateScreen();
 	}
-	public void moveLeft()
-	{
-		for(int col=1;col<7;col++)
-		{
-			array.setCol(col-1, array.getCol(col));
-		}		
-		ui.updateScreen();
-	}
-	
-	public void moveRight()
-	{
-		for(int col=6;col>=0;col--)
-		{
-			array.setCol(col+1,  array.getCol(col));
-		}
-		ui.updateScreen();
-	}
+}
 	
 
-}
+
 
 
 	

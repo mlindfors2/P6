@@ -29,8 +29,7 @@ import java.awt.Component;
 public class TestUI2 extends JFrame
 {
 
-	//Timer timer = new Timer(100, new TimerListener());
-	private Controller controller;
+		private Controller controller;
 	int sum = 0;
 	Random rand = new Random();
 //	private Array7x7 array7x7 = new Array7x7(); 
@@ -223,6 +222,7 @@ public class TestUI2 extends JFrame
 		for (int col=0;col<jtextBottomArray.length;col++)
 		{
 			String cp = jtextBottomArray[col].getText();
+			Array7 bajs = controller.getBottomRow();
 			jtextBottomArray[col].setText(Integer.toString(controller.getBottomRow().getElement(col)));
 		}
 		for (int row=0;row<jtextLeftArray.length;row++)
@@ -268,8 +268,6 @@ public class TestUI2 extends JFrame
 	
 	private class ButtonListener implements ActionListener
 	{
-
-		
 		public void actionPerformed(ActionEvent e)
 		{
 			if (e.getSource() == btnReadRow)
@@ -285,6 +283,7 @@ public class TestUI2 extends JFrame
 			{
 				if (Integer.parseInt(tfRow.getText()) > 0 && Integer.parseInt(tfRow.getText())< 8)
 				{
+					controller.setBottomRow(readBottomArray());
 					controller.getArray7x7().setRow(Integer.parseInt(tfRow.getText())-1, controller.getBottomRow()); 
 					updateScreen();
 				}
@@ -303,6 +302,8 @@ public class TestUI2 extends JFrame
 				if (Integer.parseInt(tfCol.getText())>0 && Integer.parseInt(tfCol.getText())<8)
 				{
 					//getLeftColumn ej uppdaterad från start
+					controller.setLeftColumn(readLeftArray());
+//					updateScreen();
 					controller.getArray7x7().setCol(Integer.parseInt(tfCol.getText())-1, controller.getLeftColumn());
 					updateScreen();
 				}
