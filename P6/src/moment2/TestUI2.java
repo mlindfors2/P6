@@ -205,6 +205,7 @@ public class TestUI2 extends JFrame
 		
 		}
 		controller.Randomize();
+		updateScreen();
 		btnReadRow.addActionListener(new ButtonListener());
 		btnWriteRow.addActionListener(new ButtonListener());
 		btnReadCol.addActionListener(new ButtonListener());
