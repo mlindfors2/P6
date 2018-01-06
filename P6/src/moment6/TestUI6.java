@@ -26,15 +26,13 @@ public class TestUI6 extends JFrame
 	private JPanel contentPane;
 	Timer timer;
 	private Controller controller;
-	private Color c;
-
-	int sum = 0;
+	protected static int ARRAY_SIZE = 7;
 	Random rand = new Random();
-	// private Array7x7 array7x7 = new Array7x7();
+	
 
-	private JTextField[] jtextLeftArray = new JTextField[7];
-	private JTextField[] jtextRightArray = new JTextField[7];
-	private JLabel[][] lblArray = new JLabel[7][7];
+	private JTextField[] jtextLeftArray = new JTextField[ARRAY_SIZE];
+	private JTextField[] jtextRightArray = new JTextField[ARRAY_SIZE];
+	private JLabel[][] lblArray = new JLabel[ARRAY_SIZE][ARRAY_SIZE];
 	private ColorDisplay cd;
 
 	private JButton btnLeftText = new JButton("<---Left Text");
@@ -42,6 +40,7 @@ public class TestUI6 extends JFrame
 
 	private JButton btnRight = new JButton("Right--->");
 	private JButton btnLeft = new JButton("<---Left");
+	private JButton btnLeftAlpha = new JButton("<---Left (Alpha)");
 	private JPanel pnlLeft;
 	private JPanel pnlRight;
 	private JTextField textField = new JTextField();
@@ -73,11 +72,7 @@ public class TestUI6 extends JFrame
 	public TestUI6()
 	{
 		controller = new Controller(this);
-		cd = new ColorDisplay(1, 5,	Color.argb(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)),
-				Color.argb(255, 255, 255, 255)); // 1 Page (*7) höjd, 5 Page(s) (*7 bredd)
-
-		// cd = new ColorDisplay(1,5,rand.nextInt()+255, rand.nextInt()+255);
-		c = new Color();
+		cd = new ColorDisplay(1,5, Color.BLACK, Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -96,16 +91,16 @@ public class TestUI6 extends JFrame
 		contentPane.add(pnlRight, BorderLayout.EAST);
 		pnlRight.setLayout(new GridLayout(7, 1, 0, 0));
 
-		for (int a = 0; a < 7; a++)
+		for (int a = 0; a < ARRAY_SIZE; a++)
 		{
-			jtextLeftArray[a] = new JTextField("1");
-			jtextRightArray[a] = new JTextField("2");
-			for (int b = 0; b < 7; b++)
+			jtextLeftArray[a] = new JTextField("");
+			jtextRightArray[a] = new JTextField("");
+			for (int b = 0; b < ARRAY_SIZE; b++)
 			{
-				lblArray[a][b] = new JLabel("x");
+				lblArray[a][b] = new JLabel("");
 			}
 		}
-		for (int row = 0; row < 7; row++)
+		for (int row = 0; row < ARRAY_SIZE; row++)
 		{
 			pnlLeft.add(jtextLeftArray[row]);
 			pnlRight.add(jtextRightArray[row]);
@@ -115,18 +110,14 @@ public class TestUI6 extends JFrame
 
 		JPanel pnlSouth = new JPanel();
 		pnlCenter.add(pnlSouth, BorderLayout.SOUTH);
-
 		pnlSouth.add(btnLeftText);
-
 		pnlSouth.add(btnLeft);
 		pnlSouth.add(btnRight);
-
 		pnlSouth.add(btnRightText);
-
 		textField = new JTextField();
 		pnlSouth.add(textField);
-		textField.setColumns(10);
-
+		textField.setColumns(20); // Length of the textfield for text input
+		
 		controller.randomize();
 
 		btnLeft.addActionListener(new ButtonListener());
@@ -136,26 +127,19 @@ public class TestUI6 extends JFrame
 
 		textField.setText("Programmering ar kul!");
 	}
-
 	public void updateScreen()
 	{
-		
 		for (int index = 0; index < 5; index++)
 		{
-			
-//			controller.getArray7x7(index);
 			cd.setDisplay(controller.getArray7x7(index).toIntArray(), 0, index);
 		}
 		cd.updateDisplay();
-
 		for (int row = 0; row < jtextLeftArray.length; row++)
 		{
 			jtextLeftArray[row].setText(Integer.toString(controller.getLeftColumn().getElement(row)));
 			jtextRightArray[row].setText(Integer.toString(controller.getRightColumn().getElement(row)));
 		}
-
 	}
-
 	public String getTextField()
 	{
 		return textField.getText();
@@ -211,14 +195,12 @@ public class TestUI6 extends JFrame
 		timer = new Timer();
 		timer.schedule(new moveLeft(), 40, 40);
 	}
-
 	public void useTimerMoveRight()
 	{
 		enableButtons(false);
 		timer = new Timer();
 		timer.schedule(new moveRight(), 40, 40);
 	}
-
 	public void useTimerMoveLeftText()
 	{
 		enableButtons(false);
@@ -244,7 +226,7 @@ public class TestUI6 extends JFrame
 				controller.moveLeft();
 			} else
 			{
-				timer.cancel(); // Can't use Timer-instance anymore
+				timer.cancel(); 
 				enableButtons(true);
 			}
 		}
@@ -253,7 +235,6 @@ public class TestUI6 extends JFrame
 	private class moveRight extends TimerTask
 	{
 		private int counter = 0;
-
 		public void run()
 		{
 			if (counter < 98)
@@ -271,7 +252,6 @@ public class TestUI6 extends JFrame
 	private class moveLeftText extends TimerTask
 	{
 		private int counter = 0;
-
 		public void run()
 		{
 			if (counter < (textField.getText().length() * 7))
@@ -305,6 +285,22 @@ public class TestUI6 extends JFrame
 			}
 		}
 	}
+	private class moveLeftAlpha extends TimerTask
+	{
+		private int counter = 0;
+		public void run()
+		{
+			if (counter < 98)
+			{
+				counter++;
+				controller.moveLeftAlpha();
+			} else
+			{
+				timer.cancel();
+				enableButtons(true);
+			}
+		}
+	}
 
 	private class ButtonListener implements ActionListener
 	{
@@ -312,12 +308,10 @@ public class TestUI6 extends JFrame
 		{
 			if (e.getSource() == btnLeft)
 			{
-//				controller.moveLeft();
 				useTimerMoveLeft();
 			}
 			if (e.getSource() == btnRight)
 			{
-//				controller.moveRight();
 				useTimerMoveRight();
 			}
 			if (e.getSource() == btnLeftText)
@@ -328,7 +322,10 @@ public class TestUI6 extends JFrame
 			{
 				useTimerMoveRightText();
 			}
+			if (e.getSource() == btnLeftAlpha)
+			{
+				useTimerMoveLeftAlpha();
+			}
 		}
-
 	}
 }

@@ -13,16 +13,12 @@ public class Controller
 	private Array7x7 array;
 	private Array7 leftColumn;
 	private Array7 rightColumn;
-	private Chars characters;
-//	private Timer timer = new Timer();
-	Array7x7 charArray = new Array7x7();
-	public int index1 = 0;
+	
 	
 	public Controller()
 	{
 		array = new Array7x7();
 		ui = new TestUI3();
-		characters = new Chars();
 		leftColumn = new Array7();
 		rightColumn = new Array7();
 	
@@ -31,7 +27,6 @@ public class Controller
 	{
 		array = new Array7x7();
 		this.ui = indata;
-		characters = new Chars();
 		leftColumn = new Array7();
 		rightColumn = new Array7();
 	}
@@ -119,8 +114,6 @@ public class Controller
 		array.setCol(0, ui.readLeftColumn());
 		ui.updateScreen();
 	}
-	
-	
 }
 
 

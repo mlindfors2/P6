@@ -24,13 +24,11 @@ public class TestUI4 extends JFrame
 {
 
 	private JPanel contentPane;
-	//Timer timer = new Timer(100, new TimerListener());
 	private Controller controller;
 	private Color c;
 	
 	int sum = 0;
 	Random rand = new Random();
-//	private Array7x7 array7x7 = new Array7x7(); 
 	
 	private JTextField[] jtextLeftArray = new JTextField[7];
 	private JTextField[] jtextRightArray = new JTextField[7];

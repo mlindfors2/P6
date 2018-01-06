@@ -5,7 +5,7 @@ import java.util.Random;
 public class Array7x7
 {
 	private Array7[] array7;
-
+	
 	public Array7x7()
 	{
 		this.array7 = new Array7[7];
@@ -59,6 +59,7 @@ public class Array7x7
 	{
 		for(int row=0;row<array7.length;row++)
 		{
+			
 			array7[row].setElement(col, theCol.getElement(row));
 		}
 	}

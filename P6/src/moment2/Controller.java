@@ -9,7 +9,7 @@ public class Controller
 	private Array7x7 array;
 	private Array7 leftColumn;
 	private Array7 bottomRow;
-	public int index1 = 0;
+	
 	
 	public Controller()
 	{
@@ -60,18 +60,6 @@ public class Controller
 			}
 			ui.updateScreen();
 		}
-	}
-	public void setAllToZero()
-	{
-		for (int row=0;row<7;row++)
-		{
-			for(int col=0;col<7;col++)
-			{
-				array.setElement(row, col, 0);
-				
-			}
-		}
-		ui.updateScreen();
 	}
 }
 	

@@ -15,7 +15,8 @@ public class Controller
 	private Array7 rightColumn;
 	private Chars characters;
 	Array7x7 charArray = new Array7x7();
-	String inputText = "";
+	protected static int ARRAY_SIZE = 7;
+	String inputText;
 	private boolean firstTime = true;
 	
 	private int columnCounter = 0;
@@ -25,25 +26,23 @@ public class Controller
 	private Array7x7[] array5x7x7 = new Array7x7[5];
 	public Controller()
 	{
-//		array = new Array7x7();
 		ui = new TestUI6();
 		characters = new Chars();
 		leftColumn = new Array7();
 		rightColumn = new Array7();
+		inputText = "";
 		for (int index = 0 ; index < 5; index++)
 		{
 			array5x7x7[index] = new Array7x7();
 		}
-		
-		
 	}
 	public Controller(TestUI6 indata)
 	{
-//		array = new Array7x7();
 		this.ui = indata;
 		characters = new Chars();
 		leftColumn = new Array7();
 		rightColumn = new Array7();
+		inputText = "";
 		for (int index=0;index<5;index++)
 		{
 			array5x7x7[index] = new Array7x7(); 
@@ -70,7 +69,6 @@ public class Controller
 	{
 		this.rightColumn = rightColumn;
 	}
-	
 	public void randomize()
 	{
 		for (int row=0;row<7;row++)
@@ -81,7 +79,6 @@ public class Controller
 			{
 				for (int index=0;index<array5x7x7.length;index++)
 				{
-					
 					array5x7x7[index].setElement(row,  col, Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
 				}
 			}
@@ -91,7 +88,7 @@ public class Controller
 	
 	public void randomizeLeftColumn()
 	{
-		for (int row=0;row<7;row++)
+		for (int row=0;row<ARRAY_SIZE;row++)
 		{
 			leftColumn.setElement(row, Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
 		}
@@ -99,7 +96,7 @@ public class Controller
 	}
 	public void randomizeRightColumn()
 	{
-		for(int row=0;row<7;row++)
+		for(int row=0;row<ARRAY_SIZE;row++)
 		{
 			rightColumn.setElement(row, Color.argb(255,rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
 		}
@@ -133,7 +130,7 @@ public class Controller
 			ui.updateScreen();
 			
 	}
-	public void moveRight()
+		public void moveRight()
 	{
 		randomizeLeftColumn();
 		for (int index=array5x7x7.length-1;index>=0;index--)
@@ -156,7 +153,6 @@ public class Controller
 		}
 		array5x7x7[0].setCol(0, getLeftColumn());
 		ui.updateScreen();
-		
 	}
 	
 	public void resetCounters()
@@ -238,15 +234,12 @@ public class Controller
 	}
 	public void moveRightText()
 	{
-		
-	
-		if (firstTime) // Första gången jag är här?
+			if (firstTime) // Första gången jag är här?
 		{
 			firstTime = false;
 			columnInCharacter = 6;
 			columnCounter = 0;
 			characterIndex = 0;
-			
 			inputText = ui.getTextField();
 		}
 		if (inputText.length() > characterIndex)
