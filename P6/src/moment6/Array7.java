@@ -1,6 +1,5 @@
 package moment6;
 
-import java.util.Random;
 
 public class Array7
 {
@@ -30,10 +29,7 @@ public class Array7
 	}
 	public void setArray(Array7 array7)
 	{
-		for (int col=0;col<this.array.length;col++)
-		{
-			this.array[col] = array7.getElement(col);
-		}
+		this.array = array7.toIntArray();
 	}
 	public void setArray(int[] array)
 	{
@@ -41,11 +37,7 @@ public class Array7
 	}
 	public Array7 getArray()
 	{
-		Array7 newArray = new Array7();
-		for(int col=0;col<array.length;col++)
-		{
-			newArray.setElement(col, this.getElement(col));
-		}
+		Array7 newArray = new Array7(this);
 		return newArray;
 		
 	}

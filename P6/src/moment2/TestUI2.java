@@ -30,26 +30,19 @@ public class TestUI2 extends JFrame
 {
 
 	private Controller controller;
-	int sum = 0;
+	protected static final int ARRAY_SIZE = 7;
 	Random rand = new Random();
-//	private Array7x7 array7x7 = new Array7x7(); 
-	private JTextField[] jtextLeftArray = new JTextField[7];
-	private JTextField[] jtextBottomArray = new JTextField[7];
-	private JLabel[][] lblArray = new JLabel[7][7];
+ 
+	private JTextField[] jtextLeftArray = new JTextField[ARRAY_SIZE];
+	private JTextField[] jtextBottomArray = new JTextField[ARRAY_SIZE];
+	private JLabel[][] lblArray = new JLabel[ARRAY_SIZE][ARRAY_SIZE];
+	
 	
 	private JTextField jTfRow = new JTextField();
 	private JTextField jTfCol = new JTextField();
 	
-	
-
-//	private JPanel pnlCenter = new JPanel(new GridLayout(9,9));
-//	
 	private JPanel pnlRight = new JPanel(new GridLayout(6,1));
 
-	
-	
-	
-	
 	private JPanel contentPane;
 	private JTextField tfRow = new JTextField();
 	private JTextField tfCol = new JTextField();;
@@ -150,44 +143,42 @@ public class TestUI2 extends JFrame
 		
 		panel_7.add(btnWriteCol);
 		
-		for(int a=0;a<7;a++)
+		for(int a=0;a<ARRAY_SIZE;a++)
 		{
-			jtextBottomArray[a] = new JTextField("2");
-			jtextLeftArray[a] = new JTextField("1");
+			jtextBottomArray[a] = new JTextField("");
+			jtextLeftArray[a] = new JTextField("");
 			
-			for(int b=0;b<7;b++)
+			for(int b=0;b<ARRAY_SIZE;b++)
 			{
 				
-				lblArray[a][b] = new JLabel("x");
+				lblArray[a][b] = new JLabel("");
 			}
 		}
 		
 		for (int row=0;row<9;row++)
 		{
-			if( row <7)
+			if( row <ARRAY_SIZE)
 			{
 				pnlCenter.add(jtextLeftArray[row]);
 			}
 			pnlCenter.add(new JLabel(""));
-			if(row<7) 
+			if(row<ARRAY_SIZE) 
 			{
 				for (int col=0;col<9;col++)
 				{					
-					if ( col<7 )
+					if ( col<ARRAY_SIZE )
 					{
-						sum++;
-//						lblArray[i][j].setText(Integer.toString(sum));
 						pnlCenter.add(lblArray[row][col]);
 					}
 				}
 			}
 			else 
 			{
-				if(row ==7)
+				if(row ==ARRAY_SIZE)
 				{
 					pnlCenter.add(new JLabel(""));
 					pnlCenter.add(new JLabel(""));
-					for (int k=0;k<7;k++)
+					for (int k=0;k<ARRAY_SIZE;k++)
 					{
 						
 						pnlCenter.add(new JLabel(""));
@@ -203,12 +194,11 @@ public class TestUI2 extends JFrame
 			}
 		
 		}
-		controller.Randomize();
-		updateScreen();
 		btnReadRow.addActionListener(new ButtonListener());
 		btnWriteRow.addActionListener(new ButtonListener());
 		btnReadCol.addActionListener(new ButtonListener());
 		btnWriteCol.addActionListener(new ButtonListener());
+		controller.Randomize();
 	}
 	public void updateScreen()
 	{
@@ -273,7 +263,6 @@ public class TestUI2 extends JFrame
 				{
 					controller.setLeftColumn(readLeftArray());
 					controller.setBottomRow(readBottomArray());
-					
 					controller.setBottomRow(controller.getArray7x7().getRow(Integer.parseInt(tfRow.getText())-1));
 					updateScreen();
 						
@@ -285,8 +274,6 @@ public class TestUI2 extends JFrame
 				{
 					controller.setLeftColumn(readLeftArray());
 					controller.setBottomRow(readBottomArray());
-					
-					
 					controller.getArray7x7().setRow(Integer.parseInt(tfRow.getText())-1, controller.getBottomRow()); 
 					updateScreen();
 				}

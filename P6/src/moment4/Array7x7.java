@@ -1,15 +1,15 @@
 package moment4;
 
-import java.util.Random;
 
 public class Array7x7
 {
 	private Array7[] array7;
+	protected static final int ARRAY_SIZE = 7;
 
 	public Array7x7()
 	{
-		this.array7 = new Array7[7];
-		for(int i=0;i<7;i++)
+		this.array7 = new Array7[ARRAY_SIZE];
+		for(int i=0;i<ARRAY_SIZE;i++)
 		{
 			array7[i] = new Array7();
 		}
@@ -22,14 +22,14 @@ public class Array7x7
 
 	public Array7x7(int[][] array)
 	{
-		this.array7 = new Array7[7];
+		this.array7 = new Array7[ARRAY_SIZE];
 		
-		for(int i=0;i<array7.length;i++)
+		for(int row=0;row<array7.length;row++)
 		{
-			array7[i] = new Array7();
-			for(int j=0;j<array7.length;j++)
+			array7[row] = new Array7();
+			for(int col=0;col<array7.length;col++)
 			{
-				array7[i].setElement(j, array[i][j]);
+				array7[row].setElement(col, array[row][col]);
 			}
 		}
 		
@@ -38,10 +38,8 @@ public class Array7x7
 	// ***********************************************************
 	public void setElement(int row, int col, int value)
 	{
-//		INTE ANROPAS HELA TIDEN
 		array7[row].setElement(col, value);
 	}
-
 	public int getElement(int row, int col)
 	{
 		return array7[row].getElement(col);
@@ -54,62 +52,56 @@ public class Array7x7
 	{
 		return array7[row];
 	}
-//	Tveksam
 	public void setCol(int col, Array7 theCol)
 	{
-		for(int i=0;i<array7.length;i++)
+		for(int row=0;row<array7.length;row++)
 		{
-			array7[i].setElement(col, theCol.getElement(i));
+			array7[row].setElement(col, theCol.getElement(row));
 		}
 	}
-//	Tveksam
 	public Array7 getCol(int col)
 	{
 		Array7 newArray = new Array7();
 		for (int row=0;row<array7.length;row++)
 		{
-//			int abarray = array7[row].getElement(col);
-//			newArray.setElement(row, abarray);
 			newArray.setElement(row,array7[row].getElement(col));
 		}
 		return newArray;
 	}
-//Tveksam
+
 	public void setArray(Array7x7 array7x7)
 	{
-		for (int i=0;i<array7.length;i++)
+		for (int row=0;row<array7.length;row++)
 		{
-			array7[i].setArray(array7x7.getRow(i));
+			array7[row].setArray(array7x7.getRow(row));
 		}
 		
 	}
 	public void setArray(int[][] array)
 	{
-		for(int i=0;i<array7.length;i++)
+		for(int row=0;row<array7.length;row++)
 		{
-			array7[i].setArray(array[i]);
+			array7[row].setArray(array[row]);
 		}
 	}
-//	Extremt tveksam
 	public Array7x7 getArray()
 	{
 		Array7x7 newArray7 = new Array7x7();
-		for(int i=0;i<array7.length;i++)
+		for(int row=0;row<array7.length;row++)
 		{
-			newArray7.setRow(i, array7[i].getArray());
+			newArray7.setRow(row, array7[row].getArray());
 		}
 		return newArray7;
 	}
 	public int[][] toIntArray()
 	{
-		int[][] newArray7x7 = new int[7][7];
-		for(int i=0;i<array7.length;i++)
+		int[][] newArray7x7 = new int[ARRAY_SIZE][ARRAY_SIZE];
+		for(int row=0;row<array7.length;row++)
 		{
-			for(int j=0;j<array7.length;j++)
+			for(int col=0;col<array7.length;col++)
 			{
-				newArray7x7[i][j] = array7[i].getElement(j);
+				newArray7x7[row][col] = array7[row].getElement(col);
 			}
-			
 		}
 		return newArray7x7;
 	}

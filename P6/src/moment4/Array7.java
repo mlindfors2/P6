@@ -5,10 +5,11 @@ import java.util.Random;
 public class Array7
 {
 	private int[] array;
+	protected static final int ARRAY_SIZE = 7;
 	
 	public Array7()
 	{
-		this(new int [7]);
+		this(new int [ARRAY_SIZE]);
 	}
 	public Array7(int[] array)
 	{
@@ -30,31 +31,28 @@ public class Array7
 	}
 	public void setArray(Array7 array7)
 	{
-		for (int i=0;i<this.array.length;i++)
-		{
-			this.array[i] = array7.getElement(i);
-		}
+		this.array = array7.toIntArray();
 	}
 	public void setArray(int[] array)
 	{
 		this.array = array;
 	}
-//	Tveksamt om den funkar, testa i debug
+
 	public Array7 getArray()
 	{
 		Array7 newArray = new Array7();
-		for(int i=0;i<array.length;i++)
+		for(int col=0;col<array.length;col++)
 		{
-			newArray.setElement(i, this.getElement(i));
+			newArray.setElement(col, this.getElement(col));
 		}
 		return newArray;
 	}
 	public int[] toIntArray()
 	{
 		int[] newArray = new int[array.length];
-		for(int i=0;i<array.length;i++)
+		for(int col=0;col<array.length;col++)
 		{
-			newArray[i] = array[i];
+			newArray[col] = array[col];
 		}
 		return newArray;
 	}

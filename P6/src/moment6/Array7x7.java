@@ -1,6 +1,5 @@
 package moment6;
 
-import java.util.Random;
 
 public class Array7x7
 {
@@ -49,6 +48,10 @@ public class Array7x7
 	public Array7 getRow(int row)
 	{
 		return array7[row];
+		
+//		Array7 copyOf = new Array7();
+//		copyOf.setArray( array7[row]);
+//		return copyOf;
 	}
 	public void setCol(int col, Array7 theCol)
 	{
@@ -95,11 +98,7 @@ public class Array7x7
 		int[][] newArray7x7 = new int[7][7];
 		for(int row=0;row<array7.length;row++)
 		{
-			for(int col=0;col<7;col++)
-			{
-				newArray7x7[row][col] = array7[row].getElement(col);
-			}
-			
+			newArray7x7[row] = array7[row].toIntArray();
 		}
 		return newArray7x7;
 	}	
